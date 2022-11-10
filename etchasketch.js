@@ -16,26 +16,75 @@ function createSquares(squareSize) {
 
 function colourGrid(e) {
     e.preventDefault();
+    let r = g = b = 0;
     const square = e.target;
     if (e.buttons === 0) return;
-    square.style.backgroundColor = "black";
+    if (rainbow) {
+        r = parseInt((Math.random()*255) + 1);
+        g = parseInt((Math.random()*255) + 1);
+        b = parseInt((Math.random()*255) + 1);
+        square.style.backgroundColor = `rgb(${r}, ${g}, ${b})`;
+    } else {
+        square.style.backgroundColor = color;
+    }
 }
 
 function clearGrid() {
-    const grid = document.querySelector(".square");
+    const grid = document.querySelector(".grid");
+    console.log(grid);
+    while (grid.firstChild) {
+        grid.removeChild(grid.lastChild);
+    }
 }
 
 let gridSize = 40;
+let color = "black";
+let rainbow = false;
 const sizeText = document.querySelector(".size");
 const slider = document.querySelector(".slider");
+const clear = document.querySelector("#clear");
+const colorPicker = document.querySelector(".colorPicker");
+const colorBtn = document.querySelector("#color");
+const rainbowBtn = document.querySelector("#rainbow");
+const eraser = document.querySelector("#eraser");
 
 slider.onmousemove = (e) => {
     sizeText.textContent = `${parseInt(e.target.value) + 15} x ${parseInt(e.target.value) + 15}`;
 }
 
 slider.onchange = (e) => {
-    gridSize = e.target.value;
+    gridSize = parseInt(e.target.value) + 15;
+    clearGrid();
     createSquares(gridSize);
 }
 
-createSquares(40);
+clear.onclick = () => {
+    clearGrid();
+    createSquares(gridSize);
+};
+
+eraser.onclick = () => {
+    color = "white";
+    colorBtn.classList.remove("active");
+    rainbowBtn.classList.remove("active");
+    eraser.classList.add("active");
+}
+
+colorBtn.onclick = () => {
+    rainbow = false;
+    color = colorPicker.value;
+    colorBtn.classList.add("active");
+    rainbowBtn.classList.remove("active");
+    eraser.classList.remove("active");
+};
+
+rainbowBtn.onclick = () => {
+    rainbow = true;
+    rainbowBtn.classList.add("active");
+    colorBtn.classList.remove("active");
+    eraser.classList.remove("active");
+};
+
+colorPicker.oninput = (e) => {color = e.target.value};
+
+window.onload = () => {createSquares(gridSize)};

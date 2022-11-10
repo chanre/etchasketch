@@ -36,6 +36,11 @@
     justify-content: center;
 }
 
+.option.active {
+    background-color: black;
+    color: white;
+}
+
 .option {
     background-color: rgba(88, 84, 77, 0.205);
     margin: 0 0 30px;
@@ -72,3 +77,4 @@ input[type=range] {
     font-weight: bold;
     background-color: inherit;
 }
+
