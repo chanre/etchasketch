@@ -5,12 +5,36 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Etch-a-sketch</title>
+    <link href="https://fonts.cdnfonts.com/css/pilot-command" rel="stylesheet">
     <link rel="stylesheet" href="styles.css">
     <script src="etchasketch.js" defer></script>
 </head>
 <body>
-    <div class="grid">
+    <div class="header">
+        Etch-a-Sketch
+    </div>
+    <div class="container">
+        <div class="optionsBox">
+            <input class="colorPicker" type="color" value="black">
+            <button class="option" id="black">
+                Black Ink
+            </button>
+            <button class="option" id="rainbow">
+                Rainbow Ink
+            </button>
+            <button class="option" id="eraser">
+                Eraser
+            </button>
+            <button class="option" id="clear">
+                Clear Area
+            </button>
+            <input type="range" class="slider" min="1" max="49">
+            <div class="size">40 x 40</div>
+        </div>
         
+        <div class="grid">
+            
+        </div>
     </div>
 </body>
 
