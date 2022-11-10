@@ -65,6 +65,7 @@ clear.onclick = () => {
 
 eraser.onclick = () => {
     color = "white";
+    rainbow = false;
     colorBtn.classList.remove("active");
     rainbowBtn.classList.remove("active");
     eraser.classList.add("active");
@@ -85,6 +86,17 @@ rainbowBtn.onclick = () => {
     eraser.classList.remove("active");
 };
 
-colorPicker.oninput = (e) => {color = e.target.value};
+colorPicker.oninput = (e) => {
+    color = e.target.value
+    rainbow = false;
+    colorBtn.classList.add("active");
+    rainbowBtn.classList.remove("active");
+    eraser.classList.remove("active");
+};
 
-window.onload = () => {createSquares(gridSize)};
+window.onload = () => {
+    createSquares(gridSize)
+    colorBtn.classList.add("active");
+    rainbowBtn.classList.remove("active");
+    eraser.classList.remove("active");
+};
